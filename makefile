@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-c -std=c99 -Wall -pthread
-LDFLAGS=
+CFLAGS=-c -std=c99 -Wall 
+LDFLAGS=-pthread
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
 
@@ -11,7 +11,6 @@ else
 	EXECUTABLE=sudoku
 	CLEAN=rm -rf
 endif
-
 
 all: $(SOURCES) $(EXECUTABLE)
 
