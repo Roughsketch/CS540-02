@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
   if (!ret)
   {
-    puts("Board could not be read from '%s' or is invalid\n", argv[1]);
+    printf("Board could not be read from '%s' or is invalid\n", argv[1]);
     return EXIT_FAILURE;
   }
 
