@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
+#include <pthread.h>
+
 #define SUDOKU_FILTER ", \n\r"    //  For separating out a file
 #define SUDOKU_HEIGHT (9)
 #define SUDOKU_WIDTH (9)

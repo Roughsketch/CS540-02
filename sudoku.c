@@ -1,5 +1,18 @@
 #include "sudoku.h"
 
+/*
+  Summary: Reads in a file containing a sudoku board and stores it
+    in the passed array address.
+
+  Parameters:
+    const char *: Filename to read from
+    uint32_t **: Address of an array pointer to store the data in
+
+  Returns:
+    True if the board was read correctly or false if there was an error.
+      Having an invalid value read (not 1-9) does not return false
+      and instead will print out an error message to the console.
+*/
 bool get_board(const char *filename, uint32_t **output)
 {
   char *input_str = NULL;
@@ -81,15 +94,27 @@ bool get_board(const char *filename, uint32_t **output)
   return true;
 }
 
+/*
+  Summary: Takes in a printf-like argument list and prints it out in a way
+    where other threads will not be able to print in the middle of the string.
+
+  Parameters:
+    const char *: Format string
+    ...: Arguments to fill the format string
+*/
 void thread_print(const char *format, ...)
 {
+  //  Allocate 1024 bytes of space for the string and hope no one ever expands a huge string.
   char output[1024];
 
+  //  Set up the variable arguments list
   va_list args;
   va_start(args, format);
 
+  //  Pass the arguments and format to the vararg sprintf and print it out with a single statement (puts)
   vsprintf(output, format, args);
   puts(output);
 
+  //  Clean up
   va_end(args);
 }

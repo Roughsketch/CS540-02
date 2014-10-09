@@ -1,11 +1,3 @@
-/*
-  TODO:
-    Move definitions to a header file
-    Create functions for bulk of main code to organize things
-    Add sequence check for each quadrant
-    Change thread joining to not be deterministic
-*/
-
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -21,15 +13,16 @@ int main(int argc, char *argv[])
   uint32_t *board = NULL;
   pthread_t check_thread[THREAD_TYPE_COUNT][9];
 
+  //  If an invalid amount of arguments have been passed them show them how to use
+  //  the program correctly and then quit.
   if (argc != 2)
   {
     puts("Usage: sudoku <file>");
     return EXIT_SUCCESS;
   }
 
-  bool ret = get_board(argv[1], &board);
-
-  if (!ret)
+  //  Get the board. If it retuns false then there was a fatal error.
+  if (!get_board(argv[1], &board))
   {
     printf("Board could not be read from '%s' or is invalid\n", argv[1]);
     return EXIT_FAILURE;
@@ -234,5 +227,7 @@ int main(int argc, char *argv[])
     //  If not valid then it's not valid. What did you expect?
     puts("This board is invalid");
   }
+
+
   return EXIT_SUCCESS;
 }
