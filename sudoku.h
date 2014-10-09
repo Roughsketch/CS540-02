@@ -12,7 +12,7 @@
 #define SUDOKU_HEIGHT (9)
 #define SUDOKU_WIDTH (9)
 #define SUDOKU_ARRAY_SIZE (SUDOKU_HEIGHT * SUDOKU_WIDTH) // Total array size
-#define MIN_FILE_SIZE (SUDOKU_ARRAY_SIZE * 2) //  size for numbers times 2 for commas and newlines.
+#define MIN_FILE_SIZE (SUDOKU_ARRAY_SIZE * 2 - 1) //  size for numbers times 2 for commas and newlines.
 
 bool get_board(const char *filename, uint32_t **output);
 void thread_print(const char *, ...);

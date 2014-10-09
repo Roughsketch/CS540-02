@@ -21,13 +21,24 @@ int main(int argc, char *argv[])
   uint32_t *board = NULL;
   pthread_t check_thread[THREAD_TYPE_COUNT][9];
 
+  if (argc != 2)
+  {
+    puts("Usage: sudoku <file>");
+    return EXIT_SUCCESS;
+  }
+
   bool ret = get_board(argv[1], &board);
-  printf("Return value: %d\n", ret);
+
+  if (!ret)
+  {
+    puts("Board could not be read from '%s' or is invalid\n", argv[1]);
+    return EXIT_FAILURE;
+  }
 
   //  For debug purposes, print out the array that we populated to check if it's correct.
   //  Made it print pretty lines because why not.
 
-  puts("-------------------------");  //  Top of box
+  puts("+-------+-------+-------+");  //  Top of box
   for (uint32_t row = 0; row < 9; row++)
   {
     for (uint32_t column = 0; column < 9; column++)
@@ -47,7 +58,7 @@ int main(int argc, char *argv[])
     //  If the row is a multiple of 3 then print a bottome border
     if (((row + 1) % 3) == 0)
     {
-      puts("-------------------------");
+      puts("+-------+-------+-------+");
     }
   }
 
