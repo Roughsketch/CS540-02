@@ -10,8 +10,9 @@
 
 typedef struct board_info
 {
-  uint32_t row;
-  uint32_t column;
+  uint8_t row;
+  uint8_t column;
+  uint8_t box;
   uint32_t section[9];
   bool valid;
 } ThreadInfo;

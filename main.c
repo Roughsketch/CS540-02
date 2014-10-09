@@ -61,6 +61,7 @@ int main(int argc, char *argv[])
     ThreadInfo *info = calloc(1, sizeof(ThreadInfo));
     info->row = i;      //  We are checking rows, so set row
     info->column = 0;   //  Since we are checking rows, set column to 0
+    info->box = 0;      //  Set box number
     info->valid = true; //  Assume valid until proven otherwise
 
     //  Copy the data from the board into the structure's array
@@ -80,6 +81,7 @@ int main(int argc, char *argv[])
     ThreadInfo *info = calloc(1, sizeof(ThreadInfo));
     info->column = i;   //  We are checking columns this time so set the column index
     info->row = 0;      //  Ignore row index
+    info->box = 0;      //  Set box number
     info->valid = true; //  Assume valid until proven otherwise
 
     //  Copy data into structure's array
@@ -97,12 +99,14 @@ int main(int argc, char *argv[])
   {
     //  Allocate ThreadInfo structure to store data
     ThreadInfo *info = calloc(1, sizeof(ThreadInfo));
-    info->column = i;   //  We are checking columns this time so set the column index
+    info->box = i;      //  Set box number
+    info->column = 0;   //  Ignore column index
     info->row = 0;      //  Ignore row index
     info->valid = true; //  Assume valid until proven otherwise
 
 
     //  Copy data into structure's array
+    //  Not pretty at all.
     if (i < 3)
     {
       info->section[0] = board[i * 3];

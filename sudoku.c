@@ -80,3 +80,16 @@ bool get_board(const char *filename, uint32_t **output)
 
   return true;
 }
+
+void thread_print(const char *format, ...)
+{
+  char output[1024];
+
+  va_list args;
+  va_start(args, format);
+
+  vsprintf(output, format, args);
+  puts(output);
+
+  va_end(args);
+}
